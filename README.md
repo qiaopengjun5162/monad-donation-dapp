@@ -1,8 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Monad Blink 捐赠 DApp
 
-## Getting Started
+> 支持 Monad 测试网钱包连接、余额显示、捐赠操作、弹窗反馈与最近捐赠记录的 Next.js + Tailwind CSS DApp
 
-First, run the development server:
+---
+
+## 项目简介 | Project Introduction
+
+本项目是基于 [Next.js](https://nextjs.org) + [wagmi](https://wagmi.sh) + [Tailwind CSS](https://tailwindcss.com) 的 Monad 区块链捐赠 DApp 示例，支持钱包连接、余额实时显示、捐赠 MON、弹窗反馈和最近一条捐赠记录展示。
+
+This project is a Monad blockchain donation DApp built with Next.js, wagmi, and Tailwind CSS. It supports wallet connection, real-time balance display, MON donation, feedback modal, and recent donation record display.
+
+---
+
+## 功能特性 | Features
+
+- 钱包连接（Monad 测试网）
+- 实时显示钱包余额
+- 支持多种金额和自定义金额捐赠
+- 捐赠后弹窗反馈（显示余额变化、时间、捐赠人、接收人）
+- 最近一条捐赠记录本地保存与展示
+- 响应式美观 UI，支持暗色模式
+
+---
+
+## 快速开始 | Quick Start
+
+1. **安装依赖 | Install dependencies**
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+2. **配置环境变量 | Configure environment variables**
+
+在项目根目录下新建 `.env.local` 文件，添加：
+
+```env
+NEXT_PUBLIC_DONATION_WALLET=你的捐赠钱包地址
+```
+
+3. **启动开发服务器 | Start the dev server**
 
 ```bash
 npm run dev
@@ -10,27 +51,62 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+访问 [http://localhost:3000](http://localhost:3000) 查看效果。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 主要依赖 | Main Dependencies
 
-## Learn More
+- [Next.js](https://nextjs.org)
+- [wagmi](https://wagmi.sh)
+- [viem](https://viem.sh)
+- [@dialectlabs/blinks](https://github.com/dialectlabs/blinks)
+- [connectkit](https://connectkit.dev)
+- [@tanstack/react-query](https://tanstack.com/query)
+- [Tailwind CSS](https://tailwindcss.com)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 目录结构 | Directory Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+├── src/
+│   ├── app/
+│   │   ├── page.tsx         # 主页面，包含钱包连接、余额、捐赠、弹窗等
+│   │   ├── layout.tsx       # 全局布局
+│   │   ├── globals.css      # 全局样式
+│   │   └── api/
+│   │       └── actions/
+│   │           └── donate-mon/route.ts  # 捐赠 API 路由
+│   ├── config.ts            # wagmi 链接配置
+│   └── provider.tsx         # 全局 Provider 组件
+├── .env.local               # 环境变量（需手动创建）
+├── README.md                # 项目说明
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 常见问题 | FAQ
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Q: 为什么捐赠金额有时无法准确显示？**
+  - A: 由于 Blink 组件机制，前端只能准确获取余额变化，无法100%获取本次捐赠金额。建议以余额变化为准。
+
+- **Q: 如何切换捐赠钱包地址？**
+  - A: 修改 `.env.local` 文件中的 `NEXT_PUBLIC_DONATION_WALLET`。
+
+- **Q: 支持多次捐赠吗？**
+  - A: 支持，每次捐赠后会自动弹窗反馈并记录。
+
+---
+
+## 贡献与反馈 | Contributing
+
+欢迎提交 Issue 或 PR 参与改进！
+
+---
+
+## License
+
+[MIT](LICENSE)
